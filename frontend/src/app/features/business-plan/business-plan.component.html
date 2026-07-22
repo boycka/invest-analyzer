@@ -1,0 +1,49 @@
+<main class="page-shell">
+  <section class="plan-card">
+    <p class="eyebrow">Business Plan</p>
+    <h1>Prefilled project data</h1>
+
+    @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+      <a routerLink="/">Go back to the analysis form</a>
+    } @else if (payload) {
+      <dl class="summary-grid">
+        <div>
+          <dt>Project</dt>
+          <dd>{{ payload.projectName }}</dd>
+        </div>
+        <div>
+          <dt>Company</dt>
+          <dd>{{ payload.companyName }}</dd>
+        </div>
+        <div>
+          <dt>Sector</dt>
+          <dd>{{ payload.sector }}</dd>
+        </div>
+        <div>
+          <dt>Investment</dt>
+          <dd>{{ payload.investmentAmount | number:'1.0-0' }}</dd>
+        </div>
+        <div>
+          <dt>Target return</dt>
+          <dd>{{ payload.targetReturn }}%</dd>
+        </div>
+        <div>
+          <dt>Risk level</dt>
+          <dd>{{ payload.riskLevel }}</dd>
+        </div>
+      </dl>
+
+      <div class="description-block">
+        <h2>Analysis summary</h2>
+        <p>{{ payload.analysisSummary }}</p>
+      </div>
+
+      <p class="meta">
+        Token issued at {{ payload.issuedAt }} and expires at {{ payload.expiresAt }}.
+      </p>
+
+      <a routerLink="/">Start a new transfer</a>
+    }
+  </section>
+</main>
