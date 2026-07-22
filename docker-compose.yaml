@@ -1,0 +1,97 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: analyzer-mysql
+    restart: unless-stopped
+
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - analyzer_mysql_data:/var/lib/mysql
+
+    networks:
+      - analyzer-network
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u${MYSQL_USER}",
+          "-p${MYSQL_PASSWORD}"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: analyzer-backend
+    restart: unless-stopped
+
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USERNAME: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      GROQ_API_URL: ${GROQ_API_URL}
+      GROQ_MODEL: ${GROQ_MODEL}
+      GROQ_TIMEOUT_SECONDS: ${GROQ_TIMEOUT_SECONDS}
+
+      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
+      PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
+      PAYPAL_MODE: ${PAYPAL_MODE}
+
+      BUSINESS_PLAN_BASE_URL: ${BUSINESS_PLAN_BASE_URL}
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - analyzer-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: analyzer-frontend
+    restart: unless-stopped
+
+    ports:
+      - "4200:80"
+
+    depends_on:
+      - backend
+
+    networks:
+      - analyzer-network
+
+volumes:
+  analyzer_mysql_data:
+
+networks:
+  analyzer-network:
+    driver: bridge
