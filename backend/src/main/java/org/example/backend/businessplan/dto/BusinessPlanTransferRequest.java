@@ -1,4 +1,4 @@
-package org.example.backend.transfer;
+package org.example.backend.businessplan.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
