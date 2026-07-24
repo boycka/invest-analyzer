@@ -1,4 +1,4 @@
-package org.example.backend.transfer;
+package org.example.backend.businessplan.service;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import org.example.backend.businessplan.dto.BusinessPlanTransferRequest;
+import org.example.backend.businessplan.dto.BusinessPlanTransferResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

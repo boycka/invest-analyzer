@@ -1,6 +1,9 @@
-package org.example.backend.transfer;
+package org.example.backend.businessplan.controller;
 
 import jakarta.validation.Valid;
+import org.example.backend.businessplan.dto.BusinessPlanTransferRequest;
+import org.example.backend.businessplan.dto.BusinessPlanTransferResponse;
+import org.example.backend.businessplan.service.BusinessPlanTransferService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
