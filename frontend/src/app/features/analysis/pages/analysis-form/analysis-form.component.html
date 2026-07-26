@@ -1,0 +1,105 @@
+<div class="analysis-container">
+
+    <h1>Analyse de Projet IA</h1>
+
+    <form [formGroup]="analysisForm"
+        (ngSubmit)="submit()">
+        <div class="steps">
+
+        <div
+
+        class="step"
+
+        [class.active]="currentStep>=1">
+
+        Projet
+
+        </div>
+
+        <div
+
+        class="step"
+
+        [class.active]="currentStep>=2">
+
+        Finance
+
+        </div>
+
+        <div
+
+        class="step"
+
+        [class.active]="currentStep>=3">
+
+        Contexte
+
+        </div>
+
+        </div>
+
+        <!-- STEP 1 -->
+
+        <app-project-section
+            *ngIf="currentStep === 1"
+            [form]="analysisForm">
+        </app-project-section>
+
+
+        <!-- STEP 2 -->
+
+        <app-finance-section
+            *ngIf="currentStep === 2"
+            [form]="analysisForm">
+        </app-finance-section>
+
+
+        <!-- STEP 3 -->
+
+        <app-context-section
+            *ngIf="currentStep === 3"
+            [form]="analysisForm">
+        </app-context-section>
+
+
+            <div class="buttons">
+
+            <button
+
+            type="button"
+
+            *ngIf="currentStep>1"
+
+            (click)="previousStep()">
+
+            Précédent
+
+            </button>
+
+            <button
+
+            type="button"
+
+            *ngIf="currentStep<3"
+
+            (click)="nextStep()">
+
+            Suivant
+
+            </button>
+
+            <button
+
+            type="submit"
+
+            *ngIf="currentStep==3">
+
+            Analyser
+
+            </button>
+
+            </div>
+
+    </form>
+
+</div>

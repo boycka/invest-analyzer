@@ -1,0 +1,155 @@
+/* ==========================================
+   FINANCE SECTION
+========================================== */
+
+:host{
+    display:block;
+    animation:fadeUp .5s ease;
+}
+
+h2{
+    font-size:30px;
+    font-weight:800;
+    color:#172554;
+    margin-bottom:35px;
+    position:relative;
+}
+
+h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    width:80px;
+    height:5px;
+    border-radius:50px;
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+}
+
+.form-group{
+    margin-bottom:28px;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-size:15px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+.required{
+    color:#ef4444;
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    border:1px solid #d9e4ef;
+
+    background:#f8fbff;
+
+    transition:.3s;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+input:hover,
+select:hover{
+
+    border-color:#60a5fa;
+
+}
+
+input:focus,
+select:focus{
+
+    background:white;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 5px rgba(37,99,235,.12);
+
+}
+
+.invalid{
+
+    border-color:#ef4444!important;
+
+    background:#fff7f7;
+
+}
+
+small{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+input[type=number]::-webkit-inner-spin-button{
+
+    opacity:.6;
+
+}
+
+.form-group:hover{
+
+    transform:translateY(-2px);
+
+    transition:.25s;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+@media(max-width:768px){
+
+h2{
+
+font-size:24px;
+
+}
+
+input,
+select{
+
+padding:15px;
+
+}
+
+}

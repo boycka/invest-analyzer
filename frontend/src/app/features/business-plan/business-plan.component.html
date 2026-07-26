@@ -39,11 +39,17 @@
         <p>{{ payload.analysisSummary }}</p>
       </div>
 
-      <p class="meta">
-        Token issued at {{ payload.issuedAt }} and expires at {{ payload.expiresAt }}.
-      </p>
 
-      <a routerLink="/">Start a new transfer</a>
+
+      <div class="actions">
+
+    <button
+        class="primary-btn"
+        routerLink="/">
+        Nouvelle analyse
+    </button>
+
+</div>
     }
   </section>
 </main>

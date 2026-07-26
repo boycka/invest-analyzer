@@ -1,0 +1,123 @@
+<div [formGroup]="form">
+
+<h2>Contexte du projet</h2>
+
+<div class="form-group">
+
+    <label>
+
+        Niveau d'expérience <span class="required">*</span>
+
+    </label>
+
+    <select formControlName="experienceLevel" [class.invalid]="form.get('experienceLevel')?.errors?.['required'] &&
+                 form.get('experienceLevel')?.touched">
+
+        <option value="">
+
+            Choisir
+
+        </option>
+
+        <option value="BEGINNER">
+
+            Débutant
+
+        </option>
+
+        <option value="INTERMEDIATE">
+
+            Intermédiaire
+
+        </option>
+
+        <option value="EXPERT">
+
+            Expert
+
+        </option>
+
+    </select>
+
+    <small
+        *ngIf="form.get('experienceLevel')?.errors?.['required'] &&
+               form.get('experienceLevel')?.touched">
+
+        Le niveau d'expérience est obligatoire.
+
+    </small>
+
+</div>
+
+
+<div class="form-group">
+
+    <label>
+
+        Niveau de concurrence <span class="required">*</span>
+
+    </label>
+
+    <select formControlName="competitionLevel" [class.invalid]="form.get('competitionLevel')?.errors?.['required'] &&
+                 form.get('competitionLevel')?.touched">     
+
+       <option value="">Choisir</option>
+
+        <option value="NONE">
+        Aucune
+        </option>
+
+        <option value="FEW">
+        Peu de concurrents
+        </option>
+
+        <option value="MANY">
+        Beaucoup de concurrents
+        </option>
+
+    </select>
+        <small
+        *ngIf="form.get('experienceLevel')?.errors?.['required'] &&
+               form.get('experienceLevel')?.touched">
+
+                    Le niveau de concurrence est obligatoire.
+
+                </small>
+
+</div>
+
+
+<div class="checkbox-group">
+
+    <label>
+
+        <input
+
+            type="checkbox"
+
+            formControlName="taxAdvantages">
+
+
+        Avantages fiscaux
+
+    </label>
+
+</div>
+
+
+<div class="checkbox-group">
+
+    <label>
+
+        <input
+
+            type="checkbox"
+
+            formControlName="freeZoneStatus">
+
+        Zone franche
+
+    </label>
+
+</div>
+</div>

@@ -1,0 +1,55 @@
+<div class="result-container">
+
+    <h1>Résultat de l'analyse</h1>
+
+    <div class="card">
+
+        <h2>Score de viabilité</h2>
+
+        <h1>{{result.viabilityScore}} /100</h1>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Résumé IA</h2>
+
+        <p>
+
+            {{result.analysisSummary}}
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Recommandation</h2>
+
+        <strong>
+
+            {{result.recommendation}}
+
+        </strong>
+
+    </div>
+
+    <div class="actions">
+
+    <button
+        class="secondary-btn"
+        (click)="newAnalysis()">
+
+        Nouvelle analyse
+
+    </button>
+
+    <button
+        class="primary-btn"
+        (click)="generateBusinessPlan()">
+
+        Générer Business Plan
+
+    </button>
+
+</div>

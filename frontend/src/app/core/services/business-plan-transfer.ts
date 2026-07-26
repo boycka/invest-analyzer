@@ -27,7 +27,7 @@ export class BusinessPlanTransferService {
     payload: BusinessPlanTransferRequest
   ): Observable<BusinessPlanTransferResponse> {
     return this.http.post<BusinessPlanTransferResponse>(
-      '/api/transfer-to-business-plan',
+      'api/transfer-to-business-plan',
       payload
     );
   }
