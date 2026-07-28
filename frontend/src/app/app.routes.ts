@@ -24,5 +24,16 @@ export const routes: Routes = [
 	{
 		path: '**',
 		redirectTo: ''
+	},
+	{
+
+    path:'history',
+
+    loadChildren: () =>
+
+        import('./features/history/history.routes')
+
+        .then(r => r.HISTORY_ROUTES)
+
 	}
 ];

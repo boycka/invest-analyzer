@@ -131,6 +131,7 @@ public class AnalysisServiceImpl implements AnalysisService {
                         
                         Le budget initial déclaré est de %.2f DH.
                         
+                    
                         Le chiffre d'affaires attendu est de %.2f DH.
                         
                         Le score global de viabilité est de %.0f/100.
