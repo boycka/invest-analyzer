@@ -38,9 +38,14 @@ services:
       - invest-network
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      target: dev
     container_name: backend
     restart: always
+    volumes:
+      - ./backend:/app
+      - maven_cache:/root/.m2
     depends_on:
       mysql:
         condition: service_healthy
@@ -49,6 +54,7 @@ services:
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
       SERVER_PORT: 8080
+      SPRING_DEVTOOLS_RESTART_ENABLED: "true"
     ports:
       - "8080:8080"
     networks:
