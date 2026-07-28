@@ -259,6 +259,8 @@ cd backend
 mvnw.cmd spring-boot:run
 ```
 
+With `spring-boot-devtools`, backend classes restart automatically when your IDE or build tool recompiles them. That gives you live reload for Java changes during local development.
+
 ### Start the frontend
 
 ```bash
