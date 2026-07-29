@@ -1,55 +1,37 @@
-import { Component, OnInit, inject } from '@angular/core';
-
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Router } from '@angular/router';
 import { HistoryService } from '../../services/history.service';
-
 import { History } from '../../models/history.model';
 
 @Component({
-
   selector: 'app-history',
-
   standalone: true,
-
   imports: [CommonModule],
-
   templateUrl: './history.component.html',
-
   styleUrl: './history.component.scss'
-
 })
-
-export class HistoryComponent implements OnInit {
+export class HistoryComponent {
 
   private readonly historyService = inject(HistoryService);
+  private readonly router = inject(Router);
 
-  histories: History[] = [];
+  histories$ = this.historyService.getHistory();
 
-  loading = true;
-
-  ngOnInit(): void {
-
-    this.historyService.getHistory().subscribe({
-
-      next: data => {
-
-        this.histories = data;
-
-        this.loading = false;
-
-      },
-
-      error: err => {
-
-        console.error(err);
-
-        this.loading = false;
-
-      }
-
+    voirDetail(history: History): void {
+    this.historyService.getById(history.id).subscribe(result => {
+        this.router.navigate(['/analysis-result'], {
+        state: { result }
+        });
     });
+    }
 
+  relancerAnalyse(history: History): void {
+    this.historyService.getById(history.id).subscribe(record => {
+      this.router.navigate(['/'], {
+        state: { prefill: record.request }
+      });
+    });
   }
 
 }

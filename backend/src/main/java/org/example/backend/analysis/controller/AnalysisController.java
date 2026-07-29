@@ -24,5 +24,14 @@ public class AnalysisController {
                 analysisService.analyzeProject(request)
         );
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<AnalysisResponse> getById(
+            @PathVariable Long id
+    ) {
+
+        return ResponseEntity.ok(
+                analysisService.getById(id)
+        );
+    }
 
 }

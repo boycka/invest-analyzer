@@ -20,100 +20,99 @@
 
     </div>
 
-    <div *ngIf="loading" class="loading">
+    <ng-container *ngIf="histories$ | async as histories; else loadingTpl">
 
-      Chargement...
+      <table *ngIf="histories.length; else emptyTpl">
 
-    </div>
+        <thead>
 
-    <table *ngIf="!loading && histories.length">
+        <tr>
 
-      <thead>
+          <th>Secteur</th>
 
-      <tr>
+          <th>Score</th>
 
-        <th>Secteur</th>
+          <th>Recommandation</th>
 
-        <th>Score</th>
+          <th>Date</th>
 
-        <th>Recommandation</th>
+          <th>Actions</th>
 
-        <th>Date</th>
+        </tr>
 
-        <th>Actions</th>
+        </thead>
 
-      </tr>
+        <tbody>
 
-      </thead>
+        <tr *ngFor="let history of histories">
 
-      <tbody>
+          <td>
 
-      <tr *ngFor="let history of histories">
+            {{history.sector}}
 
-        <td>
+          </td>
 
-          {{history.sector}}
+          <td>
 
-        </td>
+            <span
+              class="badge"
 
-        <td>
+              [class.green]="history.viabilityScore>=66"
 
-          <span
-            class="badge"
+              [class.orange]="history.viabilityScore>=41 && history.viabilityScore<66"
 
-            [class.green]="history.viabilityScore>=66"
+              [class.red]="history.viabilityScore<41">
 
-            [class.orange]="history.viabilityScore>=41 && history.viabilityScore<66"
+              {{history.viabilityScore}} %
 
-            [class.red]="history.viabilityScore<41">
+            </span>
 
-            {{history.viabilityScore}} %
+          </td>
 
-          </span>
+          <td>
 
-        </td>
+            {{history.recommendation}}
 
-        <td>
+          </td>
 
-          {{history.recommendation}}
+          <td>
 
-        </td>
+            {{history.createdAt | date:'dd/MM/yyyy HH:mm'}}
 
-        <td>
+          </td>
 
-          {{history.createdAt | date:'dd/MM/yyyy HH:mm'}}
+          <td>
+            <button class="secondary" (click)="voirDetail(history)">Voir</button>
+            <button class="primary" (click)="relancerAnalyse(history)">Relancer</button>
+          </td>
 
-        </td>
+        </tr>
 
-        <td>
+        </tbody>
 
-          <button class="secondary">
+      </table>
 
-            Voir
+      <ng-template #emptyTpl>
 
-          </button>
+        <div class="empty">
 
-          <button class="primary">
+          Aucune analyse trouvée.
 
-            Relancer
+        </div>
 
-          </button>
+      </ng-template>
 
-        </td>
+    </ng-container>
 
-      </tr>
+    <ng-template #loadingTpl>
 
-      </tbody>
+      <div class="loading">
 
-    </table>
+        Chargement...
 
-    <div
-      *ngIf="!loading && histories.length===0"
-      class="empty">
+      </div>
 
-      Aucune analyse trouvée.
-
-    </div>
+    </ng-template>
 
   </section>
 

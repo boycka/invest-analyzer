@@ -17,10 +17,13 @@ export class HistoryService {
 
     return this.http.get<History[]>(
 
-      '/api/analyses/history'
+      '/api/analysis/history'
 
     );
 
   }
+  getById(id: number): Observable<any> {
+  return this.http.get<any>(`/api/analysis/${id}`);
+}
 
 }

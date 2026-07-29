@@ -7,4 +7,6 @@ public interface AnalysisService {
 
     AnalysisResponse analyzeProject(AnalysisRequest request);
 
+    AnalysisResponse getById(Long id);
+
 }

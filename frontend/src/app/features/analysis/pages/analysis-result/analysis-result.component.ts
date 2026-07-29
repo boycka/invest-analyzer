@@ -58,5 +58,8 @@ export class AnalysisResultComponent {
   );
 
 }
+goToHistory(): void {
+  this.router.navigate(['/history']);
+}
 
 }

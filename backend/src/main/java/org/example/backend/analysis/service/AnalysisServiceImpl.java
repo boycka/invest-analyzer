@@ -15,6 +15,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     private final AnalysisRepository repository;
 
+
     @Override
     public AnalysisResponse analyzeProject(AnalysisRequest request) {
 
@@ -22,21 +23,18 @@ public class AnalysisServiceImpl implements AnalysisService {
 
         String recommendation;
 
-        if(score >=80){
-
-            recommendation="Projet fortement recommandé";
-
-        }else if(score>=60){
-
-            recommendation="Projet prometteur";
-
-        }else{
-
-            recommendation="Projet risqué";
-
+        if(score >= 80){
+            recommendation = "Projet fortement recommandé";
+        }
+        else if(score >= 60){
+            recommendation = "Projet prometteur";
+        }
+        else{
+            recommendation = "Projet risqué";
         }
 
-        Analysis analysis=Analysis.builder()
+
+        Analysis analysis = Analysis.builder()
 
                 .sector(request.getSector())
                 .region(request.getRegion())
@@ -53,7 +51,7 @@ public class AnalysisServiceImpl implements AnalysisService {
                 .taxAdvantages(request.getTaxAdvantages())
                 .freeZoneStatus(request.getFreeZoneStatus())
 
-                .analysisSummary(generateSummary(request,score))
+                .analysisSummary(generateSummary(request, score))
 
                 .viabilityScore(score)
 
@@ -63,7 +61,9 @@ public class AnalysisServiceImpl implements AnalysisService {
 
                 .build();
 
+
         repository.save(analysis);
+
 
         return AnalysisResponse.builder()
 
@@ -78,6 +78,34 @@ public class AnalysisServiceImpl implements AnalysisService {
                 .build();
     }
 
+
+
+    // NOUVELLE METHODE
+    @Override
+    public AnalysisResponse getById(Long id) {
+
+        Analysis analysis = repository.findById(id)
+
+                .orElseThrow(() ->
+                        new RuntimeException("Analyse introuvable avec id : " + id)
+                );
+
+
+        return AnalysisResponse.builder()
+
+                .id(analysis.getId())
+
+                .analysisSummary(analysis.getAnalysisSummary())
+
+                .viabilityScore(analysis.getViabilityScore())
+
+                .recommendation(analysis.getRecommendation())
+
+                .build();
+    }
+
+
+
     private double calculateScore(AnalysisRequest request){
 
         double score = 40;
@@ -91,11 +119,14 @@ public class AnalysisServiceImpl implements AnalysisService {
         else if(request.getExpectedRevenue() >= request.getInitialBudget())
             score += 10;
 
+
         if(Boolean.TRUE.equals(request.getTaxAdvantages()))
             score += 10;
 
+
         if(Boolean.TRUE.equals(request.getFreeZoneStatus()))
             score += 10;
+
 
         switch (request.getExperienceLevel()){
 
@@ -107,36 +138,39 @@ public class AnalysisServiceImpl implements AnalysisService {
 
         }
 
+
         switch(request.getCompetitionLevel()){
 
             case "Peu de concurrents" -> score += 10;
 
             case "Concurrence moyenne" -> score += 5;
 
-            case "Concurrence élevée" -> score -=5;
+            case "Concurrence élevée" -> score -= 5;
 
         }
+
 
         return Math.min(score,100);
 
     }
 
+
+
     private String generateSummary(AnalysisRequest request,double score){
 
-                return """
-        
-                        Le projet appartient au secteur %s.
-                        
-                        Il est localisé dans la région %s.
-                        
-                        Le budget initial déclaré est de %.2f DH.
-                        
-                    
-                        Le chiffre d'affaires attendu est de %.2f DH.
-                        
-                        Le score global de viabilité est de %.0f/100.
-                        
-                        """
+        return """
+
+                Le projet appartient au secteur %s.
+
+                Il est localisé dans la région %s.
+
+                Le budget initial déclaré est de %.2f DH.
+
+                Le chiffre d'affaires attendu est de %.2f DH.
+
+                Le score global de viabilité est de %.0f/100.
+
+                """
                 .formatted(
 
                         request.getSector(),
@@ -148,7 +182,6 @@ public class AnalysisServiceImpl implements AnalysisService {
                         request.getExpectedRevenue(),
 
                         score
-
                 );
 
     }

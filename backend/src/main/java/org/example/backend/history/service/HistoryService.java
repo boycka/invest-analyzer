@@ -8,4 +8,6 @@ public interface HistoryService {
 
     List<HistoryResponse> getHistory();
 
+    HistoryResponse getById(Long id);
+
 }
