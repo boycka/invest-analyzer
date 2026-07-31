@@ -17,6 +17,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     private final AnalysisRepository repository;
     private final GroqAnalysisClient groqAnalysisClient;
 
+
     @Override
     public AnalysisResponse analyzeProject(AnalysisRequest request) {
         GroqAnalysisClient.AnalysisJsonResult aiResult = groqAnalysisClient.parseResult(
@@ -48,7 +49,9 @@ public class AnalysisServiceImpl implements AnalysisService {
                 .createdAt(LocalDateTime.now())
                 .build();
 
+
         repository.save(analysis);
+
 
         return AnalysisResponse.builder()
                 .id(analysis.getId())

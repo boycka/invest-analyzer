@@ -249,5 +249,44 @@ button{
 width:100%;
 
 }
+.history-btn {
+
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef2ff
+    );
+
+    color:#4338ca;
+
+    border:2px solid #c7d2fe;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.history-btn:hover {
+
+    background:linear-gradient(
+        135deg,
+        #4338ca,
+        #6366f1
+    );
+
+    color:white;
+
+    border-color:#4338ca;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(99,102,241,.35);
+
+}
 
 }

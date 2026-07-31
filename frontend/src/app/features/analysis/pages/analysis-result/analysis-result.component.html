@@ -6,7 +6,7 @@
 
         <h2>Score de viabilité</h2>
 
-        <h1>{{result.viabilityScore}} /100</h1>
+        <h1>{{result?.viabilityScore}} /100</h1>
 
     </div>
 
@@ -16,7 +16,7 @@
 
         <p>
 
-            {{result.analysisSummary}}
+            {{result?.analysisSummary}}
 
         </p>
 
@@ -28,7 +28,7 @@
 
         <strong>
 
-            {{result.recommendation}}
+            {{result?.recommendation}}
 
         </strong>
 
@@ -86,8 +86,11 @@
         class="primary-btn"
         (click)="generateBusinessPlan()">
 
-        Générer Business Plan
+         📈 Générer Business Plan
 
     </button>
+    <button 
+        class="history-btn"
+        (click)="goToHistory()">
 
 </div>

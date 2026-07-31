@@ -1,0 +1,119 @@
+<main class="page-shell">
+
+  <section class="history-card">
+
+    <div class="header">
+
+      <div>
+
+        <p class="eyebrow">
+          Historique
+        </p>
+
+        <h1>Mes analyses</h1>
+
+        <p class="subtitle">
+          Retrouvez toutes vos analyses réalisées.
+        </p>
+
+      </div>
+
+    </div>
+
+    <ng-container *ngIf="histories$ | async as histories; else loadingTpl">
+
+      <table *ngIf="histories.length; else emptyTpl">
+
+        <thead>
+
+        <tr>
+
+          <th>Secteur</th>
+
+          <th>Score</th>
+
+          <th>Recommandation</th>
+
+          <th>Date</th>
+
+          <th>Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr *ngFor="let history of histories">
+
+          <td>
+
+            {{history.sector}}
+
+          </td>
+
+          <td>
+
+            <span
+              class="badge"
+
+              [class.green]="history.viabilityScore>=66"
+
+              [class.orange]="history.viabilityScore>=41 && history.viabilityScore<66"
+
+              [class.red]="history.viabilityScore<41">
+
+              {{history.viabilityScore}} %
+
+            </span>
+
+          </td>
+
+          <td>
+
+            {{history.recommendation}}
+
+          </td>
+
+          <td>
+
+            {{history.createdAt | date:'dd/MM/yyyy HH:mm'}}
+
+          </td>
+
+          <td>
+            <button class="secondary" (click)="voirDetail(history)">Voir</button>
+            <button class="primary" (click)="relancerAnalyse(history)">Relancer</button>
+          </td>
+
+        </tr>
+
+        </tbody>
+
+      </table>
+
+      <ng-template #emptyTpl>
+
+        <div class="empty">
+
+          Aucune analyse trouvée.
+
+        </div>
+
+      </ng-template>
+
+    </ng-container>
+
+    <ng-template #loadingTpl>
+
+      <div class="loading">
+
+        Chargement...
+
+      </div>
+
+    </ng-template>
+
+  </section>
+
+</main>
