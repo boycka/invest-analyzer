@@ -214,3 +214,37 @@ font-size:55px;
 }
 
 }
+
+.dimension,
+.risk,
+.recommendation{
+    padding:16px 0;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.dimension:last-child,
+.risk:last-child,
+.recommendation:last-child{
+    border-bottom:none;
+}
+
+.dimension-header{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.dimension-header strong,
+.risk strong,
+.recommendation strong{
+    margin:0;
+    padding:0;
+    background:none;
+    color:#0f172a;
+}
+
+.dimension p,
+.risk p,
+.recommendation p{
+    margin:8px 0 0;
+}

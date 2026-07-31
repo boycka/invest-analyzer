@@ -12,7 +12,7 @@ export class AnalysisService {
 
   private http = inject(HttpClient);
 
-  private readonly apiUrl = '/api/analysis';
+  private readonly apiUrl = '/api/analyse';
 
   analyze(request: AnalysisRequest): Observable<AnalysisResponse> {
 

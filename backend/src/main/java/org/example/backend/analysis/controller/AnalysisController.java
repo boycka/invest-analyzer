@@ -4,11 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.example.backend.analysis.dto.request.AnalysisRequest;
 import org.example.backend.analysis.dto.response.AnalysisResponse;
 import org.example.backend.analysis.service.AnalysisService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/analysis")
+@RequestMapping({"/api/analyse", "/api/analysis"})
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AnalysisController {
@@ -17,7 +18,7 @@ public class AnalysisController {
 
     @PostMapping
     public ResponseEntity<AnalysisResponse> analyze(
-            @RequestBody AnalysisRequest request
+            @Valid @RequestBody AnalysisRequest request
     ) {
 
         return ResponseEntity.ok(

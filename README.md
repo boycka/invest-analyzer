@@ -170,7 +170,7 @@ JWT_EXPIRATION=86400000
 
 GROQ_API_KEY=
 GROQ_API_URL=https://api.groq.com/openai/v1/chat/completions
-GROQ_MODEL=
+GROQ_MODEL=llama-3.3-70b-versatile
 GROQ_TIMEOUT_SECONDS=30
 
 PAYPAL_CLIENT_ID=
@@ -261,6 +261,16 @@ mvnw.cmd spring-boot:run
 
 With `spring-boot-devtools`, backend classes restart automatically when your IDE or build tool recompiles them. That gives you live reload for Java changes during local development.
 
+### Test the Groq connection
+
+From the repository root, after setting `GROQ_API_KEY` in `.env`, start the backend and send a real request through the analysis endpoint:
+
+```powershell
+Invoke-RestMethod -Method Post -Uri http://localhost:8080/api/analyse -ContentType 'application/json' -Body (Get-Content .\docs\groq-smoke-request.json -Raw)
+```
+
+The response must contain five `dimensions`, three `risks`, three `recommendations`, and `generationSource: "GROQ"`. The API key is only read by Spring Boot and is never sent to Angular.
+
 ### Start the frontend
 
 ```bash
@@ -308,7 +318,7 @@ GET  /api/auth/me
 
 ```http
 GET  /api/analyse/service
-POST /api/analyse/lancer
+POST /api/analyse
 GET  /api/analyse/{id}/statut
 GET  /api/analyse/{id}/resultat
 GET  /api/analyse/{id}/pdf

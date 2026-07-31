@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,5 +20,13 @@ public class AnalysisResponse {
     private Double viabilityScore;
 
     private String recommendation;
+
+    private List<AnalysisDimension> dimensions;
+
+    private List<AnalysisRisk> risks;
+
+    private List<AnalysisRecommendation> recommendations;
+
+    private String generationSource;
 
 }

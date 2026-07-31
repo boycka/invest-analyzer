@@ -1,0 +1,14 @@
+{
+  "sector": "Hotels",
+  "region": "Djerba",
+  "description": "A three-star hotel project for visitors to Djerba.",
+  "stage": "Idea",
+  "initialBudget": 500000,
+  "financingSource": "Bank loan",
+  "expectedRevenue": 800000,
+  "expectedRoiMonths": 48,
+  "experienceLevel": "Intermediate",
+  "competitionLevel": "Medium competition",
+  "taxAdvantages": false,
+  "freeZoneStatus": false
+}

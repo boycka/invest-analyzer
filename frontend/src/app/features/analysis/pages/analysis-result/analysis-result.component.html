@@ -34,6 +34,44 @@
 
     </div>
 
+    <div class="card">
+
+        <h2>Les 5 dimensions</h2>
+
+        <div class="dimensions">
+            <div class="dimension" *ngFor="let dimension of result.dimensions">
+                <div class="dimension-header">
+                    <strong>{{ dimension.dimension }}</strong>
+                    <span>{{ dimension.score }}/100</span>
+                </div>
+                <p>{{ dimension.explanation }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Risques principaux</h2>
+
+        <div class="risk" *ngFor="let risk of result.risks">
+            <strong>{{ risk.criticality }} — {{ risk.description }}</strong>
+            <p>{{ risk.mitigation }}</p>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Recommandations</h2>
+
+        <div class="recommendation" *ngFor="let recommendation of result.recommendations">
+            <strong>{{ recommendation.priority }}. {{ recommendation.title }}</strong>
+            <p>{{ recommendation.description }}</p>
+        </div>
+
+    </div>
+
     <div class="actions">
 
     <button
