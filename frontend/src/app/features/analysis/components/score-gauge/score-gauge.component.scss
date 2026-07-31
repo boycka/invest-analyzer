@@ -1,0 +1,9 @@
+.gauge-card { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.gauge { width: 112px; height: 112px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto; }
+.gauge-center { width: 82px; height: 82px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: #fff; color: #0f172a; }
+.gauge-center strong { padding: 0; margin: 0; background: none; color: #0f172a; font-size: 25px; line-height: 1; }
+.gauge-center span { color: #64748b; font-size: 12px; }
+.gauge-copy { min-width: 0; }
+.gauge-copy h3 { margin: 0 0 7px; color: #172554; font-size: 16px; }
+.gauge-copy p { margin: 0; font-size: 14px; line-height: 1.5; }
+@media (max-width: 600px) { .gauge-card { align-items: flex-start; } .gauge { width: 92px; height: 92px; } .gauge-center { width: 68px; height: 68px; } }

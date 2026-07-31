@@ -57,6 +57,13 @@ services:
       GROQ_API_URL: ${GROQ_API_URL:-https://api.groq.com/openai/v1/chat/completions}
       GROQ_MODEL: ${GROQ_MODEL:-llama-3.3-70b-versatile}
       GROQ_TIMEOUT_SECONDS: ${GROQ_TIMEOUT_SECONDS:-30}
+      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
+      PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
+      PAYPAL_MODE: ${PAYPAL_MODE:-sandbox}
+      PAYPAL_BASE_URL: ${PAYPAL_BASE_URL:-https://api-m.sandbox.paypal.com}
+      PAYPAL_ANALYSIS_PRICE: ${PAYPAL_ANALYSIS_PRICE:-20.00}
+      PAYPAL_CURRENCY: ${PAYPAL_CURRENCY:-USD}
+
       SERVER_PORT: 8080
       SPRING_DEVTOOLS_RESTART_ENABLED: "true"
     ports:

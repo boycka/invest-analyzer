@@ -587,3 +587,33 @@ MySQL
 ```
 
 After the base connection works, the next feature is JWT authentication.
+
+## Binôme C delivery guide
+
+The analysis module now includes the complete flow shown in the project tasks:
+
+- `POST /api/analyse/paiement` creates a PayPal Sandbox order.
+- `POST /api/analyse/paiement/confirmer` captures the order and launches the analysis only after PayPal returns `COMPLETED`.
+- `POST /api/analyse` calls Groq and stores the formatted result. If Groq fails, a rule-based `FALLBACK` result is saved and shown to the user.
+- `GET /api/analyse/historique` lists saved analyses and `GET /api/analyse/{id}/resultat` returns the complete detail used for relaunch.
+- `GET /api/analyse/{id}/pdf` generates a downloadable PDF with the score, five dimensions, risks, recommendations, and project data.
+- The Business Plan button calls `POST /api/transfer-to-business-plan` and redirects with a signed, expiring HMAC-SHA256 token.
+
+Required backend variables are listed in `.env.example`. PayPal client secrets and the Groq key remain backend-only; they are never placed in Angular code.
+
+### Local validation
+
+```powershell
+# Start infrastructure and services
+docker compose up -d --build
+
+# Backend checks
+cd backend
+.\mvnw.cmd test
+
+# Frontend checks
+cd ..\frontend
+npm run build
+```
+
+The complete demonstration uses the sample request in `docs/groq-smoke-request.json`, then verifies the dashboard, PDF download, history relaunch, and Business Plan transfer. PayPal Sandbox requires non-placeholder `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET` values.

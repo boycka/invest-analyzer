@@ -13,12 +13,14 @@
         <h1>Mes analyses</h1>
 
         <p class="subtitle">
-          Retrouvez toutes vos analyses réalisées.
+          Retrouvez toutes vos analyses rÃ©alisÃ©es.
         </p>
 
       </div>
 
     </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
     <ng-container *ngIf="histories$ | async as histories; else loadingTpl">
 
@@ -96,7 +98,7 @@
 
         <div class="empty">
 
-          Aucune analyse trouvée.
+          Aucune analyse trouvÃ©e.
 
         </div>
 

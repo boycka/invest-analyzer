@@ -2,6 +2,10 @@
 
     <h1>Analyse de Projet IA</h1>
 
+    <div class="analysis-loading" *ngIf="isSubmitting"><div class="spinner"></div><strong>{{ analysisPhase }}</strong><span>Votre analyse est en cours, ne fermez pas cette page.</span></div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
     <form [formGroup]="analysisForm"
         (ngSubmit)="submit()">
         <div class="steps">
@@ -72,7 +76,7 @@
 
             (click)="previousStep()">
 
-            Précédent
+            PrÃƒÆ’Ã‚Â©cÃƒÆ’Ã‚Â©dent
 
             </button>
 

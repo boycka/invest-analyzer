@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+body { font-family: Arial, sans-serif; color: #172033; margin: 36px; }
+h1 { color: #243b8f; margin-bottom: 4px; }
+h2 { color: #243b8f; border-bottom: 2px solid #dbe4ff; padding-bottom: 6px; margin-top: 28px; }
+.meta { color: #64748b; margin-bottom: 20px; }
+.global { background: #eef4ff; border-radius: 12px; padding: 18px; font-size: 20px; }
+.score { float: right; font-weight: bold; color: #2563eb; }
+.dimension, .risk, .recommendation { border-bottom: 1px solid #dbe4ff; padding: 10px 0; }
+p { line-height: 1.45; }
+.badge { color: #64748b; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>Investment Project Analysis</h1>
+<div class="meta">{{PROJECT_TITLE}} · {{CREATED_AT}} · Source: {{SOURCE}}</div>
+<div class="global"><strong>Global viability score: {{SCORE}}/100</strong></div>
+<h2>Summary</h2><p>{{SUMMARY}}</p>
+<h2>Five dimensions</h2>{{DIMENSIONS}}
+<h2>Top risks</h2>{{RISKS}}
+<h2>Recommendations</h2>{{RECOMMENDATIONS}}
+</body>
+</html>

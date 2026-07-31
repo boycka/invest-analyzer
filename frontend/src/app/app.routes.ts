@@ -4,6 +4,7 @@ import { AnalysisFormComponent } from './features/analysis/pages/analysis-form/a
 import { BusinessPlanComponent } from './features/business-plan/business-plan.component';
 import { BusinessPlanRedirectComponent } from './features/business-plan/business-plan-redirect/business-plan-redirect.component';
 import { AnalysisResultComponent } from './features/analysis/pages/analysis-result/analysis-result.component';
+import { PaymentComponent } from './features/payment/payment.component';
 export const routes: Routes = [
 
   {
@@ -14,6 +15,11 @@ export const routes: Routes = [
   {
     path: 'business-plan',
     component: BusinessPlanComponent
+  },
+
+  {
+    path: 'payment',
+    component: PaymentComponent
   },
 
   {

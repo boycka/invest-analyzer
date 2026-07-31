@@ -35,3 +35,8 @@ export interface AnalysisRecommendation {
   description: string;
   priority: number;
 }
+
+export interface AnalysisDetailResponse {
+  result: AnalysisResponse;
+  request: import('./analysis-request.model').AnalysisRequest;
+}

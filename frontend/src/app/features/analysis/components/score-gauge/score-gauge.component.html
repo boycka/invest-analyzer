@@ -1,0 +1,12 @@
+<div class="gauge-card">
+  <div class="gauge" [style.background]="gaugeBackground">
+    <div class="gauge-center">
+      <strong>{{ normalizedScore }}</strong>
+      <span>/100</span>
+    </div>
+  </div>
+  <div class="gauge-copy">
+    <h3>{{ label }}</h3>
+    <p>{{ explanation }}</p>
+  </div>
+</div>

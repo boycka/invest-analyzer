@@ -289,4 +289,8 @@ width:100%;
 
 }
 
-}
+}.analysis-loading { display:flex; flex-direction:column; align-items:center; gap:10px; padding:24px; margin-bottom:20px; color:#2563eb; background:#eff6ff; border-radius:16px; text-align:center; }
+.analysis-loading span { color:#64748b; font-size:14px; }
+.error-message { padding:14px 18px; margin-bottom:18px; color:#991b1b; background:#fee2e2; border-radius:12px; }
+.spinner { width:24px; height:24px; border:3px solid #bfdbfe; border-top-color:#2563eb; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }

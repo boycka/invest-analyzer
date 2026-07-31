@@ -11,16 +11,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/analysis")
+@RequestMapping({"/api/analyse", "/api/analysis"})
 public class HistoryController {
 
     private final HistoryService historyService;
 
-    @GetMapping("/history")
+    @GetMapping({"/historique", "/history"})
     public List<HistoryResponse> getHistory() {
-
         return historyService.getHistory();
-
     }
-
 }
