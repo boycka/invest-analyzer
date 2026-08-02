@@ -1,139 +1,36 @@
-<div [formGroup]="form">
-<h2>Informations financières</h2>
+<div [formGroup]="form" class="section-form">
+  <h2>Informations financières</h2>
 
-<div class="form-group">
+  <div class="form-group">
+    <label for="initialBudget">Budget initial <span class="required">*</span></label>
+    <input id="initialBudget" type="number" formControlName="initialBudget" placeholder="Ex : 150000" [class.invalid]="form.get('initialBudget')?.invalid && form.get('initialBudget')?.touched">
+    <small *ngIf="form.get('initialBudget')?.errors?.['required'] && form.get('initialBudget')?.touched">Le budget est obligatoire.</small>
+    <small *ngIf="form.get('initialBudget')?.errors?.['min'] && form.get('initialBudget')?.touched">Le budget doit être supérieur à 1 000 DH.</small>
+  </div>
 
-  <label>
-    Budget initial <span class="required">*</span>
-  </label>
+  <div class="form-group">
+    <label for="financingSource">Source de financement <span class="required">*</span></label>
+    <select id="financingSource" formControlName="financingSource" [class.invalid]="form.get('financingSource')?.invalid && form.get('financingSource')?.touched">
+      <option value="">Choisir</option>
+      <option value="SELF">Fonds propres</option>
+      <option value="BANK">Banque</option>
+      <option value="INVESTOR">Investisseur</option>
+      <option value="MIXED">Mixte</option>
+    </select>
+    <small *ngIf="form.get('financingSource')?.errors?.['required'] && form.get('financingSource')?.touched">La source de financement est obligatoire.</small>
+  </div>
 
-  <input
-    type="number"
-    formControlName="initialBudget"
-    placeholder="Ex : 150000" [class.invalid]="form.get('initialBudget')?.invalid &&
-                 form.get('initialBudget')?.touched">
+  <div class="form-group">
+    <label for="expectedRevenue">Chiffre d'affaires attendu <span class="required">*</span></label>
+    <input id="expectedRevenue" type="number" formControlName="expectedRevenue" placeholder="Ex : 500000" [class.invalid]="form.get('expectedRevenue')?.invalid && form.get('expectedRevenue')?.touched">
+    <small *ngIf="form.get('expectedRevenue')?.errors?.['required'] && form.get('expectedRevenue')?.touched">Le chiffre d'affaires est obligatoire.</small>
+    <small *ngIf="form.get('expectedRevenue')?.errors?.['min'] && form.get('expectedRevenue')?.touched">Le montant doit être supérieur ou égal à 0.</small>
+  </div>
 
-  <small
-    *ngIf="form.get('initialBudget')?.errors?.['required'] &&
-           form.get('initialBudget')?.touched">
-
-    Le budget est obligatoire.
-
-  </small>
-  <small
-    *ngIf="form.get('initialBudget')?.errors?.['min']">
-
-    Le budget doit être supérieur à 1000 DH.
-
-</small>
-
-</div>
-
-
-
-<div class="form-group">
-
-  <label>
-    Source de financement <span class="required">*</span>     
-  </label>
-
-  <select formControlName="financingSource" [class.invalid]="form.get('financingSource')?.errors?.['required'] &&
-                 form.get('financingSource')?.touched">
-
-
-
-    <option value="">
-      Choisir
-    </option>
-
-    <option value="SELF">
-      Fonds propres
-    </option>
-
-    <option value="BANK">
-      Banque
-    </option>
-
-    <option value="INVESTOR">
-      Investisseur
-    </option>
-
-    <option value="MIXED">
-      Mixte
-    </option>
-
-  </select>
-      <small
-      *ngIf="form.get('financingSource')?.errors?.['required'] &&
-            form.get('financingSource')?.touched">
-
-      La source de financement est obligatoire.
-
-    </small>
-
-</div>
-
-
-
-<div class="form-group">
-
-  <label>
-    Chiffre d'affaires attendu <span class="required">*</span>
-  </label>
-
-  <input
-    type="number"
-    formControlName="expectedRevenue"
-    placeholder="Ex : 500000" [class.invalid]="form.get('expectedRevenue')?.errors?.['required'] &&
-                 form.get('expectedRevenue')?.touched">
-
-
-
-  <small
-    *ngIf="form.get('expectedRevenue')?.errors?.['required']
-    && form.get('expectedRevenue')?.touched">
-
-    Le chiffre d'affaires est obligatoire.
-
-    </small>
-
-    <small
-    *ngIf="form.get('expectedRevenue')?.errors?.['min']
-    && form.get('expectedRevenue')?.touched">
-
-    Le montant doit être supérieur à 0.
-
-  </small>
-
-</div>
-
-
-
-<div class="form-group">
-
-  <label>
-    Retour sur investissement (mois) <span class="required">*</span>
-  </label>
-
-  <input
-    type="number"
-    formControlName="expectedRoiMonths"
-    placeholder="Ex : 18" [class.invalid]="form.get('expectedRoiMonths')?.errors?.['required'] &&
-                 form.get('expectedRoiMonths')?.touched">
-
-  <small
-    *ngIf="form.get('expectedRoiMonths')?.errors?.['required'] &&
-           form.get('expectedRoiMonths')?.touched">
-
-      le retour sur investissement est obligatoire.
-    
-  </small>
-  <small
-    *ngIf="form.get('expectedRoiMonths')?.errors?.['min']">
-
-    Le retour sur investissement doit être supérieur à 1 mois.    
-
-  </small>
-
-</div>
+  <div class="form-group">
+    <label for="expectedRoiMonths">Retour sur investissement (mois) <span class="required">*</span></label>
+    <input id="expectedRoiMonths" type="number" formControlName="expectedRoiMonths" placeholder="Ex : 18" [class.invalid]="form.get('expectedRoiMonths')?.invalid && form.get('expectedRoiMonths')?.touched">
+    <small *ngIf="form.get('expectedRoiMonths')?.errors?.['required'] && form.get('expectedRoiMonths')?.touched">Le retour sur investissement est obligatoire.</small>
+    <small *ngIf="form.get('expectedRoiMonths')?.errors?.['min'] && form.get('expectedRoiMonths')?.touched">Le retour sur investissement doit être supérieur à 1 mois.</small>
+  </div>
 </div>

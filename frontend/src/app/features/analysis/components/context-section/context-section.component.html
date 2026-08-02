@@ -1,123 +1,33 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class="section-form">
+  <h2>Contexte du projet</h2>
 
-<h2>Contexte du projet</h2>
-
-<div class="form-group">
-
-    <label>
-
-        Niveau d'expérience <span class="required">*</span>
-
-    </label>
-
-    <select formControlName="experienceLevel" [class.invalid]="form.get('experienceLevel')?.errors?.['required'] &&
-                 form.get('experienceLevel')?.touched">
-
-        <option value="">
-
-            Choisir
-
-        </option>
-
-        <option value="BEGINNER">
-
-            Débutant
-
-        </option>
-
-        <option value="INTERMEDIATE">
-
-            Intermédiaire
-
-        </option>
-
-        <option value="EXPERT">
-
-            Expert
-
-        </option>
-
+  <div class="form-group">
+    <label for="experienceLevel">Niveau d'expérience <span class="required">*</span></label>
+    <select id="experienceLevel" formControlName="experienceLevel" [class.invalid]="form.get('experienceLevel')?.invalid && form.get('experienceLevel')?.touched">
+      <option value="">Choisir</option>
+      <option value="BEGINNER">Débutant</option>
+      <option value="INTERMEDIATE">Intermédiaire</option>
+      <option value="EXPERT">Expert</option>
     </select>
+    <small *ngIf="form.get('experienceLevel')?.errors?.['required'] && form.get('experienceLevel')?.touched">Le niveau d'expérience est obligatoire.</small>
+  </div>
 
-    <small
-        *ngIf="form.get('experienceLevel')?.errors?.['required'] &&
-               form.get('experienceLevel')?.touched">
-
-        Le niveau d'expérience est obligatoire.
-
-    </small>
-
-</div>
-
-
-<div class="form-group">
-
-    <label>
-
-        Niveau de concurrence <span class="required">*</span>
-
-    </label>
-
-    <select formControlName="competitionLevel" [class.invalid]="form.get('competitionLevel')?.errors?.['required'] &&
-                 form.get('competitionLevel')?.touched">     
-
-       <option value="">Choisir</option>
-
-        <option value="NONE">
-        Aucune
-        </option>
-
-        <option value="FEW">
-        Peu de concurrents
-        </option>
-
-        <option value="MANY">
-        Beaucoup de concurrents
-        </option>
-
+  <div class="form-group">
+    <label for="competitionLevel">Niveau de concurrence <span class="required">*</span></label>
+    <select id="competitionLevel" formControlName="competitionLevel" [class.invalid]="form.get('competitionLevel')?.invalid && form.get('competitionLevel')?.touched">
+      <option value="">Choisir</option>
+      <option value="NONE">Aucune</option>
+      <option value="FEW">Peu de concurrents</option>
+      <option value="MANY">Beaucoup de concurrents</option>
     </select>
-        <small
-        *ngIf="form.get('experienceLevel')?.errors?.['required'] &&
-               form.get('experienceLevel')?.touched">
+    <small *ngIf="form.get('competitionLevel')?.errors?.['required'] && form.get('competitionLevel')?.touched">Le niveau de concurrence est obligatoire.</small>
+  </div>
 
-                    Le niveau de concurrence est obligatoire.
+  <div class="checkbox-group">
+    <label><input type="checkbox" formControlName="taxAdvantages"> Avantages fiscaux</label>
+  </div>
 
-                </small>
-
-</div>
-
-
-<div class="checkbox-group">
-
-    <label>
-
-        <input
-
-            type="checkbox"
-
-            formControlName="taxAdvantages">
-
-
-        Avantages fiscaux
-
-    </label>
-
-</div>
-
-
-<div class="checkbox-group">
-
-    <label>
-
-        <input
-
-            type="checkbox"
-
-            formControlName="freeZoneStatus">
-
-        Zone franche
-
-    </label>
-
-</div>
+  <div class="checkbox-group">
+    <label><input type="checkbox" formControlName="freeZoneStatus"> Zone franche</label>
+  </div>
 </div>

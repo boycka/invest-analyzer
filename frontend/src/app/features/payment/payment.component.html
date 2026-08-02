@@ -2,21 +2,18 @@
   <section class="payment-card">
     <p class="eyebrow">Paiement s&eacute;curis&eacute;</p>
     <h1>Finaliser votre analyse</h1>
-    <p class="intro">Le paiement Sandbox valide l&#39;acc&egrave;s au diagnostic IA. Aucun secret PayPal n&#39;est expos&eacute; dans Angular.</p>
 
-    <div class="loader" *ngIf="isLoading"><span class="spinner"></span>Cr&eacute;ation de la commande PayPal...</div>
-    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="loader" *ngIf="isLoading" role="status"><span class="spinner"></span><span>Cr&eacute;ation de la commande PayPal...</span></div>
+    <div class="error" *ngIf="errorMessage" role="alert">{{ errorMessage }}</div>
 
     <ng-container *ngIf="order">
       <div class="price">{{ order.amount }} {{ order.currency }} <small>PayPal Sandbox</small></div>
       <a class="paypal" [href]="order.approvalUrl" target="_blank" rel="noopener">1. Ouvrir PayPal Sandbox</a>
-      <button class="confirm" [disabled]="isConfirming" (click)="confirmPayment()">
-        {{ isConfirming ? 'Verification en cours...' : '2. Confirmer le paiement' }}
-      </button>
-      <p class="hint">Apres l&#39;approbation dans PayPal, revenez ici puis cliquez sur le bouton de verification.</p>
+      <button class="confirm" [disabled]="isConfirming" (click)="confirmPayment()">{{ isConfirming ? 'V&eacute;rification en cours...' : '2. Confirmer le paiement' }}</button>
+      <p class="hint">Apr&egrave;s l&#39;approbation dans PayPal, revenez ici puis cliquez sur le bouton de v&eacute;rification.</p>
     </ng-container>
 
-    <button class="skip" *ngIf="allowPaymentSkip" [disabled]="isConfirming" (click)="continueWithoutPayment()">Continuer sans paiement (developpement)</button>
-    <button class="cancel" (click)="cancel()">Annuler</button>
+    <button class="skip" *ngIf="allowPaymentSkip" [disabled]="isConfirming" (click)="continueWithoutPayment()">Continuer sans paiement (d&eacute;veloppement)</button>
+    <button class="cancel" [disabled]="isConfirming" (click)="cancel()">Annuler</button>
   </section>
 </main>

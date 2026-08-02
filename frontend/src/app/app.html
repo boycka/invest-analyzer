@@ -1,1 +1,16 @@
+<header class="app-nav">
+  <a class="brand" routerLink="/" aria-label="Retour a l'analyse">
+    <span class="brand-mark">IA</span>
+    <span>
+      <strong>Invest Analyzer</strong>
+      <small>Diagnostic de projet</small>
+    </span>
+  </a>
+
+  <nav aria-label="Navigation principale">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Nouvelle analyse</a>
+    <a routerLink="/history" routerLinkActive="active">Historique</a>
+  </nav>
+</header>
+
 <router-outlet></router-outlet>

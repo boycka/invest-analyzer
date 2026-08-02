@@ -107,7 +107,7 @@ export class BusinessPlanRedirectComponent {
         this.isSubmitting = false;
 
         this.errorMessage =
-          'Impossible de transférer les données vers le Business Plan.';
+          'Impossible de transferer les donnees vers le Business Plan.';
 
       }
 

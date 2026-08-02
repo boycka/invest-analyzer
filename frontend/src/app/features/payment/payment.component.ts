@@ -45,7 +45,7 @@ export class PaymentComponent {
     this.errorMessage = '';
     this.paymentService.confirm(this.order.orderId, this.request).subscribe({
       next: response => this.router.navigate(['/analysis-result'], { state: { result: response.analysis, request: this.request } }),
-      error: error => { this.isConfirming = false; this.errorMessage = error?.error?.error || 'Le paiement nest pas encore confirme.'; }
+      error: error => { this.isConfirming = false; this.errorMessage = error?.error?.error || "Le paiement n'est pas encore confirme."; }
     });
   }
 

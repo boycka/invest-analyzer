@@ -1,21 +1,24 @@
 <main class="result-container" *ngIf="result">
   <header class="result-header">
-    <p class="eyebrow">Analyse terminée</p>
-    <h1>Tableau de bord de viabilité</h1>
+    <p class="eyebrow">Analyse termin&eacute;e</p>
+    <h1>Tableau de bord de viabilit&eacute;</h1>
     <p class="subtitle">Une lecture rapide des forces, risques et prochaines actions de votre projet.</p>
   </header>
 
-  <div class="notice fallback" *ngIf="isFallback()">
-    Le service IA est temporairement indisponible. Cette analyse utilise le modèle de secours basé sur les données du formulaire.
+  <div class="notice fallback" *ngIf="isFallback()" role="status">
+    Le service IA est temporairement indisponible. Cette analyse utilise un mod&egrave;le de secours bas&eacute; sur les donn&eacute;es du formulaire.
   </div>
 
   <section class="card global-card">
     <app-score-gauge label="Score global" [score]="result.viabilityScore" [explanation]="result.recommendation"></app-score-gauge>
-    <p class="summary">{{ result.analysisSummary }}</p>
+    <div class="summary-block">
+      <p class="section-kicker">Synth&egrave;se</p>
+      <p class="summary">{{ result.analysisSummary }}</p>
+    </div>
   </section>
 
   <section class="card">
-    <h2>Les 5 dimensions</h2>
+    <div class="section-heading"><div><p class="section-kicker">Vue d'ensemble</p><h2>Les 5 dimensions</h2></div><span class="count-pill">{{ result.dimensions.length }} indicateurs</span></div>
     <div class="dimension-grid">
       <details *ngFor="let dimension of result.dimensions" open>
         <summary><span>{{ dimension.dimension }}</span><strong>{{ dimension.score }}/100</strong></summary>
@@ -25,15 +28,15 @@
   </section>
 
   <section class="card">
-    <h2>Risques principaux</h2>
+    <div class="section-heading"><div><p class="section-kicker">Points de vigilance</p><h2>Risques principaux</h2></div><span class="count-pill">{{ result.risks.length }}</span></div>
     <details class="risk" *ngFor="let risk of result.risks" open [class.high]="risk.criticality === 'HIGH'" [class.medium]="risk.criticality === 'MEDIUM'" [class.low]="risk.criticality === 'LOW'">
       <summary><span>{{ risk.description }}</span><strong>{{ risk.criticality }}</strong></summary>
-      <p><b>Mesure d'atténuation :</b> {{ risk.mitigation }}</p>
+      <p><b>Mesure d'att&eacute;nuation :</b> {{ risk.mitigation }}</p>
     </details>
   </section>
 
   <section class="card">
-    <h2>Recommandations</h2>
+    <div class="section-heading"><div><p class="section-kicker">Plan d'action</p><h2>Recommandations</h2></div><span class="count-pill">{{ result.recommendations.length }}</span></div>
     <details class="recommendation" *ngFor="let recommendation of result.recommendations" open>
       <summary><span>{{ recommendation.priority }}. {{ recommendation.title }}</span></summary>
       <p>{{ recommendation.description }}</p>
@@ -43,7 +46,7 @@
   <div class="actions">
     <button class="secondary-btn" (click)="newAnalysis()">Nouvelle analyse</button>
     <button class="secondary-btn" (click)="goToHistory()">Historique</button>
-    <button class="secondary-btn" (click)="downloadPdf()">Télécharger le PDF</button>
-    <button class="primary-btn" (click)="generateBusinessPlan()">Générer le Business Plan</button>
+    <button class="secondary-btn" (click)="downloadPdf()">T&eacute;l&eacute;charger le PDF</button>
+    <button class="primary-btn" (click)="generateBusinessPlan()">G&eacute;n&eacute;rer le Business Plan</button>
   </div>
 </main>

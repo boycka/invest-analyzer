@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HistoryService } from '../../services/history.service';
 import { History } from '../../models/history.model';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
 })
@@ -23,7 +23,7 @@ export class HistoryComponent {
       next: detail => this.router.navigate(['/analysis-result'], {
         state: { result: detail.result, request: detail.request }
       }),
-      error: () => this.errorMessage = 'Impossible de charger le détail de cette analyse.'
+      error: () => this.errorMessage = 'Impossible de charger le detail de cette analyse.'
     });
   }
 

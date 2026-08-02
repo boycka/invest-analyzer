@@ -1,55 +1,32 @@
 <main class="page-shell">
   <section class="plan-card">
     <p class="eyebrow">Business Plan</p>
-    <h1>Prefilled project data</h1>
+    <h1>Donn&eacute;es du projet pr&eacute;remplies</h1>
 
-    @if (errorMessage) {
-      <p class="error-message">{{ errorMessage }}</p>
-      <a routerLink="/">Go back to the analysis form</a>
-    } @else if (payload) {
+    <div class="error-message" *ngIf="errorMessage" role="alert">
+      <strong>Impossible d'ouvrir le Business Plan</strong>
+      <span>{{ errorMessage }}</span>
+      <a routerLink="/">Retourner au formulaire d'analyse</a>
+    </div>
+
+    <ng-container *ngIf="payload">
+      <p class="intro">Les informations ci-dessous proviennent de votre analyse. Vous pouvez maintenant poursuivre avec le service Business Plan.</p>
       <dl class="summary-grid">
-        <div>
-          <dt>Project</dt>
-          <dd>{{ payload.projectName }}</dd>
-        </div>
-        <div>
-          <dt>Company</dt>
-          <dd>{{ payload.companyName }}</dd>
-        </div>
-        <div>
-          <dt>Sector</dt>
-          <dd>{{ payload.sector }}</dd>
-        </div>
-        <div>
-          <dt>Investment</dt>
-          <dd>{{ payload.investmentAmount | number:'1.0-0' }}</dd>
-        </div>
-        <div>
-          <dt>Target return</dt>
-          <dd>{{ payload.targetReturn }}%</dd>
-        </div>
-        <div>
-          <dt>Risk level</dt>
-          <dd>{{ payload.riskLevel }}</dd>
-        </div>
+        <div><dt>Projet</dt><dd>{{ payload.projectName }}</dd></div>
+        <div><dt>Entreprise</dt><dd>{{ payload.companyName }}</dd></div>
+        <div><dt>Secteur</dt><dd>{{ payload.sector }}</dd></div>
+        <div><dt>Investissement</dt><dd>{{ payload.investmentAmount | number:'1.0-0' }} DH</dd></div>
+        <div><dt>Revenus attendus</dt><dd>{{ payload.targetReturn | number:'1.0-0' }} DH</dd></div>
+        <div><dt>Recommandation</dt><dd>{{ payload.riskLevel }}</dd></div>
       </dl>
 
       <div class="description-block">
-        <h2>Analysis summary</h2>
+        <p class="section-kicker">Synthèse de l'analyse</p>
+        <h2>Votre projet en quelques lignes</h2>
         <p>{{ payload.analysisSummary }}</p>
       </div>
 
-
-
-      <div class="actions">
-
-    <button
-        class="primary-btn"
-        routerLink="/">
-        Nouvelle analyse
-    </button>
-
-</div>
-    }
+      <div class="actions"><button class="primary-btn" routerLink="/">Nouvelle analyse</button></div>
+    </ng-container>
   </section>
 </main>

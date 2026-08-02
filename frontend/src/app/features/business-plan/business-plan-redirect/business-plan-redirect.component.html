@@ -1,146 +1,29 @@
 <main class="page-shell">
-
   <section class="hero-card">
-
-<div class="header-block">
-
-  <p class="eyebrow">Business Plan</p>
-
-  <h1>Génération du Business Plan</h1>
-
-  <div class="intro">
-
-    <div class="info-icon">ℹ️</div>
-
-    <div>
-
-      Les données de votre analyse ont été récupérées automatiquement.
-
-      Complétez uniquement le <strong>nom du projet</strong> et le <strong>nom de l'entreprise</strong>.
-
+    <div class="header-block">
+      <p class="eyebrow">Business Plan</p>
+      <h1>G&eacute;n&eacute;ration du Business Plan</h1>
+      <div class="intro">
+        <div class="info-icon" aria-hidden="true">i</div>
+        <div>Les donn&eacute;es de votre analyse ont &eacute;t&eacute; r&eacute;cup&eacute;r&eacute;es automatiquement. Compl&eacute;tez uniquement le <strong>nom du projet</strong> et le <strong>nom de l'entreprise</strong>.</div>
+      </div>
     </div>
-    
 
-  </div>
-
-
-</div>
-
-    <form
-      class="analysis-form"
-      [formGroup]="form"
-      (ngSubmit)="submit()">
-
-      <!-- Nom du projet -->
-
-      <label>
-
-        <span>Nom du projet</span>
-
-        <input
-          type="text"
-          formControlName="projectName"
-          placeholder="Ex : Plateforme e-commerce" />
-
-      </label>
-
-      <!-- Nom entreprise -->
-
-      <label>
-
-        <span>Nom de l'entreprise</span>
-
-        <input
-          type="text"
-          formControlName="companyName"
-          placeholder="Ex : Tech Solutions" />
-
-      </label>
-
-      <!-- Secteur -->
-
-      <label>
-
-        <span>Secteur d'activité</span>
-
-        <input
-          type="text"
-          formControlName="sector"
-          readonly />
-
-      </label>
-
-      <!-- Résumé -->
-
-      <label>
-
-        <span>Résumé de l'analyse</span>
-
-        <textarea
-          rows="5"
-          formControlName="analysisSummary"
-          readonly>
-        </textarea>
-
-      </label>
+    <form class="analysis-form" [formGroup]="form" (ngSubmit)="submit()">
+      <label for="projectName"><span>Nom du projet</span><input id="projectName" type="text" formControlName="projectName" placeholder="Ex : Plateforme e-commerce"></label>
+      <label for="companyName"><span>Nom de l'entreprise</span><input id="companyName" type="text" formControlName="companyName" placeholder="Ex : Tech Solutions"></label>
+      <label for="businessSector"><span>Secteur d'activit&eacute;</span><input id="businessSector" type="text" formControlName="sector" readonly></label>
+      <label for="analysisSummary"><span>R&eacute;sum&eacute; de l'analyse</span><textarea id="analysisSummary" rows="5" formControlName="analysisSummary" readonly></textarea></label>
 
       <div class="grid-two">
-
-        <label>
-
-          <span>Investissement prévu (DT)</span>
-
-          <input
-            type="number"
-            formControlName="investmentAmount"
-            readonly />
-
-        </label>
-
-        <label>
-
-          <span>Revenus attendus (DT)</span>
-
-          <input
-            type="number"
-            formControlName="targetReturn"
-            readonly />
-
-        </label>
-
+        <label for="investmentAmount"><span>Investissement pr&eacute;vu (DH)</span><input id="investmentAmount" type="number" formControlName="investmentAmount" readonly></label>
+        <label for="targetReturn"><span>Revenus attendus (DH)</span><input id="targetReturn" type="number" formControlName="targetReturn" readonly></label>
       </div>
 
-      <label>
+      <label for="riskLevel"><span>Recommandation de l'analyse</span><input id="riskLevel" type="text" formControlName="riskLevel" readonly></label>
 
-        <span>Recommandation de l'analyse</span>
-
-        <input
-          type="text"
-          formControlName="riskLevel"
-          readonly />
-
-      </label>
-
-      @if (errorMessage) {
-
-        <p class="error-message">
-
-          {{ errorMessage }}
-
-        </p>
-
-      }
-
-      <button
-        type="submit"
-        [disabled]="isSubmitting">
-
-        {{ isSubmitting ? 'Génération en cours...' : 'Générer le Business Plan' }}
-
-      </button>
-
+      <p class="error-message" *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
+      <button type="submit" [disabled]="isSubmitting">{{ isSubmitting ? 'G&eacute;n&eacute;ration en cours...' : 'G&eacute;n&eacute;rer le Business Plan' }}</button>
     </form>
-
   </section>
-
 </main>

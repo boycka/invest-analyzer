@@ -31,14 +31,14 @@ export class BusinessPlanComponent implements OnInit {
     const token = this.route.snapshot.queryParamMap.get('token');
 
     if (!token) {
-      this.errorMessage = 'Missing transfer token. Return to the analysis form and generate it again.';
+      this.errorMessage = 'Jeton de transfert manquant. Retournez au formulaire et générez-le à nouveau.';
       return;
     }
 
     try {
       this.payload = this.decodePayload(token);
     } catch {
-      this.errorMessage = 'The transfer token could not be decoded.';
+      this.errorMessage = 'Le jeton de transfert ne peut pas être décodé.';
     }
   }
 
